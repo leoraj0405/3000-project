@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head'); %>
+</head>
+
+<body class="container">
+    <header>
+        <%- include('../../partials/header'); %>
+    </header>
+    <main>
+        <div class="jumbotron">
+            <form class="needs-validation" novalidate>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom01">First name</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName"
+                            value="<%=data.firstName %>">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom02">Last name</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName"
+                            value="<%=data.lastName %>">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustomUsername">Date of Birth</label>
+                        <div class="input-group">
+                            <input type="date" class="form-control" id="dob" name="dob" value="<%=data.dob %>">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="validationCustom03">password</label>
+                        <input type="text" class="form-control" id="password" name="password"
+                            value="<%=data.password %>">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <input type="hidden" class="form-control" id="adminId" name="adminId"
+                            value="<%=data.adminId %>">
+                    </div>
+
+                </div>
+                <button class="btn btn-primary" onclick="addAdmin()">Save</button>
+                <button type="button" class="btn btn-warning" onclick="cancelBtn()">Cancel</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <%- include('../../partials/footer'); %>
+    </footer>
+    <script>
+        function addAdmin() {
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var fname = document.getElementById('firstName').value;
+            var lname = document.getElementById('lastName').value;
+            var dofb = document.getElementById('dob').value;
+            var pasword = document.getElementById('password').value;
+            var adminid = document.getElementById('adminId').value;
+
+            const raw = JSON.stringify({
+                "firstName": fname,
+                "lastName": lname,
+                "dob": dofb,
+                "password": pasword
+            });
+            const requestOptions = {
+                headers: myHeaders,
+                body: raw,
+                redirect: "follow"
+            };
+            let apiRequest
+            if (adminid == '') {
+                apiRequest = fetch("http://localhost:3000/api/admin", { ...requestOptions, method: "POST", })
+            } else {
+                apiRequest = fetch("http://localhost:3000/api/admin/" + adminid, { ...requestOptions, method: "PUT", })
+            }
+            apiRequest.then((response) => {
+                window.location.replace("http://localhost:3000/admin");
+            }).catch((error) => console.error(error));
+        }
+        function cancelBtn() {
+            var searchValue = document.getElementById('').value
+            window.location.href = "http://localhost:3000/admin?letter=" + searchValue;
+        }
+    </script>
+</body>
+
+</html>

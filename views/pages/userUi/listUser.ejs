@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../../partials/head'); %>
+    <style type="text/css">
+      .header-controls {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        height: 25px;
+
+      }
+    </style>
+</head>
+
+<body class="container">
+
+  <header>
+    <%- include('../../partials/header'); %>
+  </header>
+  <main>
+    <div class="jumbotron">
+      <h3>admin List</h3>
+      <p> person who is in charge of the operation of a network of computers, 
+        a website, a group of computer users, etc.,
+         and is able to make changes to it
+        </p>
+          <div class="header-controls">
+        <div class="btn-toolbar">
+          <div class="btn-group btn-group-sm" id="limitDev">
+            <a class="btn btn-outline-info" href="?limit=5&order=<%=order%>">5</a>
+            <a class="btn btn-outline-info" href="?limit=10&order=<%=order%>">10</a>
+            <a class="btn btn-outline-info" href="?limit=15&order=<%=order%>">15</a>
+            <a class="btn btn-outline-info" href="?limit=20&order=<%=order%>">20</a>
+          </div>
+        </div>
+        <div class="addUserDev">
+          <a type="button" class="btn btn-primary" href="user/add">Add Users</a>
+        </div>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">
+              User Id 
+              <div class="btn-group btn-group-sm">
+                <a class="btn btn-secondary" href="?order=asc&limit=<%=limit%>&sort=userId">A</a>
+                <a class="btn btn-secondary" href="?order=desc&limit=<%=limit%>&sort=userId">D</a>
+              </div>
+            </th>
+            <th scope="col">
+              First Name
+              <div class="btn-group btn-group-sm">
+                <a class="btn btn-secondary" href="?order=asc&limit=<%=limit%>&sort=firstName">A</a>
+                <a class="btn btn-secondary" href="?order=desc&limit=<%=limit%>&sort=firstName">D</a>
+              </div>
+            </th>
+            <th scope="col">
+              Last Name
+              <div class="btn-group btn-group-sm">
+                <a class="btn btn-secondary" href="?order=asc&limit=<%=limit%>&sort=lastName">A</a>
+                <a class="btn btn-secondary" href="?order=desc&limit=<%=limit%>&sort=lastName">D</a>
+              </div>
+            </th>
+            <th scope="col">
+              Exam Id
+              <div class="btn-group btn-group-sm">
+                <a class="btn btn-secondary" href="?order=asc&limit=<%=limit%>&sort=examId">A</a>
+                <a class="btn btn-secondary" href="?order=desc&limit=<%=limit%>&sort=examId">D</a>
+              </div>
+            </th>
+            <th scoope="col">
+              Join At
+              <div class="btn-group btn-group-sm">
+                <a class="btn btn-secondary" href="?order=asc&limit=<%=limit%>&sort=createdAt">A</a>
+                <a class="btn btn-secondary" href="?order=desc&limit=<%=limit%>&sort=createdAt">D</a>
+              </div>
+            </th>
+            <th scope="col">Actions</th>
+
+
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0;i< data.length;i++){ %>
+            <tr>
+              <td scope="row">
+                <%= data[i].userId %>
+              </td>
+              <td>
+                <%=data[i].firstName %>
+              </td>
+              <td>
+                <%=data[i].lastName %>
+              </td>
+              <td>
+                <%=data[i].examId %>
+              </td>
+              <td>
+                <%=data[i].createdAt %>
+              </td>
+              <td>
+                <a class="btn btn-primary" href="user/edit/<%=data[i].userId %>">Edit</a>
+                <button class="btn btn-danger" onclick="deleteWork('<%=data[i].userId %>')">Delete </button>
+              </td>
+            </tr>
+            <% } %>
+        </tbody>
+      </table>
+      <hr>
+      <center>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item <%=(pageNum == 1?'disabled':'') %>">
+              <a class="page-link" href="?page=<%=pageNum - 1 %>&limit=<%=limit%>&order=<%=order%>&sort=<%=sort%>">Previous</a>
+            </li>
+            <% for(var i=1; i <=pagesTotal; i++) { %>
+
+              <li class="page-item <% if(pageNum == i ){ %>disabled<% } %>">
+                <a class="page-link" href="?page=<%=i%>&limit=<%=limit%>&order=<%=order%>&sort=<%=sort%>">
+                  <%=i%>
+                </a>
+              </li>
+              <% } %>
+                <li class="page-item <% if (pagesTotal == pageNum ){ %>
+                disabled <% } %>">
+                  <a class="page-link" href="?page=<%=(pageNum + 1) %>&limit=<%=limit%>&order=<%=order%>&sort=<%=sort%>">Next</a>
+                </li>
+          </ul>
+        </nav>
+      </center>
+    </div>
+  </main>
+</body>
+<footer>
+  <%- include('../../partials/footer'); %>
+</footer>
+
+<script>
+  function deleteWork(delId) {
+    if (confirm('Are you sure you want to delete?')) {
+      const requestOptions = {
+        method: "DELETE",
+      };
+      fetch("http://localhost:3000/api/user/" + delId, requestOptions)
+        .then((response) => {
+          window.location.reload();
+        })
+        .catch((error) => console.error(error));
+    }
+  }
+</script>
+
+</html>

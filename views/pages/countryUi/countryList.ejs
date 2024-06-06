@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>country</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        .secondary-body {
+            width: 1250px;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page {
+            background-color: antiquewhite;
+            width: 1000px;
+            height: auto;
+            padding: 50px;
+            border-radius: 20px;
+        }
+
+        .info {
+            margin-bottom: 50px;
+        }
+
+        .add-button {
+            background-color: #ddd;
+            border: none;
+            color: black;
+            padding: 16px 28px;
+            text-align: center;
+            font-size: 12px;
+            transition: 0.3s;
+            font-size: 12px
+        }
+
+        .add-button:hover {
+            background-color: skyblue;
+            color: black;
+            border-radius: 10px;
+        }
+
+        .action {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 10px;
+            margin-right: 22px;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-around;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="secondary-body">
+        <div class="page">
+            <div class="info">
+                <h1>Country List</h1>
+                <p>an area of land with its own people, government, etc</p>
+                <p>Today, there are 195 nations in the world. This total includes the Holy See and the State of
+                    Palestine, two non-member observer states, along with the 193 United Nations member states. Check
+                    the complete list here:
+                </p>
+            </div>
+            <div class="action">
+                <a type="button" class="add-button" href="country/addCountry">add Country</a>
+            </div>
+            <div class="table">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Country Id</th>
+                            <th>Country Name</th>
+                            <th>Alpha code 2</th>
+                            <th>Alpha code 3</th>
+                            <th>phone code</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0;i< data.length;i++){ %>
+                            <tr>
+                                <td scope="row">
+                                    <%=data[i].id %>
+                                </td>
+                                <td>
+                                    <%=data[i].name %>
+                                </td>
+                                <td>
+                                    <%=data[i].isoCode2 %>
+                                </td>
+                                <td>
+                                    <%=data[i].isoCode3 %>
+                                </td>
+                                <td>
+                                    <%=data[i].phoneCode %>
+                                </td>
+                                <td>
+                                    <div class="actions">
+                                        <button class="btn btn-primary" onclick="filter('<%= data[i].id %>')">Manage
+                                            states</button>
+                                            <a class="btn btn-primary" href="country/edit/<%=data[i].id%>">Edit</a>
+                                            <button class="btn btn-danger"
+                                                onclick="deleteWork('<%= data[i].id %>')">Delete </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function deleteWork(id) {
+            if (confirm('Are sure do you want to delete ?')) {
+                const raw = "";
+
+                const requestOptions = {
+                    method: "DELETE",
+                    body: raw,
+                    redirect: "follow"
+                };
+
+                try {
+                    const response = await fetch("http://localhost:3000/api/country/" + id, requestOptions)
+                                        
+                    if (response.status === 200) {
+                        return window.location.reload()
+                    }
+                    alert(await response.text())
+                } catch (error) {
+                    console.log(error)
+                }
+
+            }
+        }
+
+        function filter(id) {
+            window.location.replace(`http://localhost:3000/country?countryId=${id}`)
+        }
+    </script>
+</body>
+
+</html>

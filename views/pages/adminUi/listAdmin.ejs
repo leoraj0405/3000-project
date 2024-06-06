@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../../partials/head'); %>
+    <style type="text/css">
+      .header-controls {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        height: 25px;
+
+      }
+
+      .actions {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .headControls {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+
+      }
+
+      .search input[type=text] {
+        width: 200px;
+        height: 35px;
+        border-radius: 20px;
+        border: navy;
+      }
+
+      .search {
+        float: right;
+        margin: 7px;
+      }
+
+      .content {
+        padding-top: 40px;
+      }
+
+      .content h1 {
+        color: green;
+      }
+
+      .adminSearch {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .tableHead {
+        margin-left: 30px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .searchB {
+        margin-left: 700px;
+      }
+
+      .bodyDiv {
+        width: 1200px;
+        padding-right: 50px;
+      }
+
+      .icon {
+        display: flex;
+        flex-direction: column;
+        margin-left: 30px;
+
+      }
+
+      .searchDev {
+        display: flex;
+        margin-left: 700px;
+      }
+    </style>
+</head>
+
+<body class="container">
+
+  <div class="bodyDiv">
+    <header>
+      <%- include('../../partials/header'); %>
+    </header>
+  </div>
+  <main>
+    <div class="bodyDiv">
+      <div class="jumbotron">
+        <h3>Admin List</h3>
+
+        <p>a person who is in charge of the operation of a
+          network of computers,
+          a website, a group of computer users, etc.,
+          and is able to make changes to it</p>
+
+        <div class="headControls">
+          <div class="btn-group btn-group-sm" role="group">
+            <a class="btn btn-secondary btn-lg <% if(limit == 5) {%> disabled <%} %> "
+              href="?limit=5&<%=limitQs %>">5</a>
+
+            <a class="btn btn-secondary btn-lg <% if(limit == 10) {%> disabled <%} %>"
+              href="?limit=10&<%=limitQs %>">10</a>
+
+            <a class="btn btn-secondary btn-lg <% if(limit == 15) {%> disabled <%} %>"
+              href="?limit=15&<%=limitQs %>">15</a>
+
+            <a class="btn btn-secondary btn-lg <% if(limit == 20) {%> disabled <%} %>"
+              href="?limit=20&&<%=limitQs %>">20</a>
+          </div>
+          <div class="searchDev">
+            <button type="submit" class="btn btn-secondary btn-sm" formaction="?<%=searchQs %>" onclick="search()"><i
+                class="fa fa-search"></i></button>
+          </div>
+          <div class="addAdmin">
+            <a class="btn btn-primary" href="admin/addAdmin">Add Admin </a>
+          </div>
+        </div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">
+                <div class="adminSearch">
+                  <div class="tableHead">
+                    Admin Id
+                    <div class="icon">
+                      <div class="aicon">
+                        <a href="?order=asc&sort=adminId&<%=orderQs %>"><i class="fa fa-caret-up"></i></a>
+                      </div>
+
+                      <a href="?order=desc&sort=adminId&<%=orderQs %>"><i class="fa fa-caret-down"></i></a>
+                    </div>
+                  </div>
+                  <div class="search">
+                    <form>
+                      <div class="searchBar">
+                        <input type="text" placeholder=" Search " name="search" id="searchid" value="<%=searchAdminId%>">
+                      </div>
+                    </form>
+                  </div>
+
+                </div>
+              </th>
+              <th scope="col">
+                <div class="tableHead">
+                  First Name
+                  <div class="icon">
+                    <a href="?&order=asc&sort=firstName&<%=orderQs %>"><i class="fa fa-caret-up"></i></a>
+                    <a href="?&order=desc&sort=firstName&<%=orderQs %>"><i class="fa fa-caret-down"></i></a>
+                  </div>
+                </div>
+                <div class="search">
+                  <form>
+                    <input type="text" placeholder=" Search " name="search" id="searchFirstname" value="<%=searchFirstName%>">
+                  </form>
+                </div>
+              </th>
+              <th scope="col">
+                <div class="tableHead">
+                  Last Name
+                  <div class="icon">
+                    <a href="?order=asc&sort=lastName&<%=orderQs %>"><i class="fa fa-caret-up"></i></a>
+                    <a href="?order=desc&sort=lastName&<%=orderQs %>"><i class="fa fa-caret-down"></i></a>
+                  </div>
+                </div>
+                <span class="search">
+                  <form>
+                    <input type="text" placeholder=" Search " name="search" id="searchLastname" value="<%=searchLastName%>">
+                  </form>
+                </span>
+              </th>
+              <th scope="col">
+                <div class="tableHead">
+                  Date of Birth
+                  <div class="icon">
+                    <a href="?order=asc&sort=dob&<%=orderQs %>"><i class="fa fa-caret-up"></i></a>
+                    <a href="?order=desc&sort=dob&<%=orderQs %>"><i class="fa fa-caret-down"></i></a>
+                  </div>
+                </div>
+                <div class="search">
+                  <form>
+                    <input type="date" placeholder=" Search " name="search" id="searchDob"value="<%=searchDob%>">
+                  </form>
+                </div>
+
+              </th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <% for(var i=0; i < data.length;i++) { %>
+                <td scope="row">
+                  <%= data[i].adminId %>
+                </td>
+
+                <td>
+                  <%= data[i].firstName %>
+                </td>
+                <td>
+                  <%= data[i].lastName %>
+                </td>
+                <td>
+                  <%= data[i].dob %>
+                </td>
+                <td>
+                  <div class="actions">
+                    <a class="btn btn-info" href="/admin/edit/<%=data[i].adminId %>">Edit</a>
+                    <button class="btn btn-danger" onclick="deleteWork('<%=data[i].adminId %>')">Delete </button>
+                  </div>
+                </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <center>
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              <li class="page-item <% if(page ==1) { %>disabled<% } %>">
+                <a class="page-link" href="?page=<%=page - 1 %>&<%=paginationQs %>&<%=searchQsStr%>">Previous</a>
+              </li>
+              <% for(var i=1;i <=pagesTotal;i++) { %>
+                <li class="page-item <% if(page == i) { %>disabled<% } %>"><a class="page-link"
+                    href="?page=<%=i%>&<%=paginationQs %>&<%=searchQsStr%>">
+                    <%=i %>
+                  </a></li>
+                <%} %>
+                  <li class="page-item <% if(pagesTotal == page) { %>disabled<% } %>">
+                    <a class="page-link" href="?page=<%=page + 1 %>&<%=paginationQs %>&<%=searchQsStr%>">Next</a>
+                  </li>
+            </ul>
+          </nav>
+        </center>
+      </div>
+    </div>
+  </main>
+</body>
+<footer>
+  <%- include('../../partials/footer'); %>
+</footer>
+<script>
+  function deleteWork(id) {
+    if (confirm('Are you sure do you want to delete ?')) {
+      const requestOptions = {
+        method: "DELETE",
+        redirect: "follow"
+      };
+
+      fetch("http://localhost:3000/api/admin/" + id, requestOptions)
+        .then((response) => {
+          window.location.reload();
+        })
+        .catch((error) => console.error(error));
+    }
+  }
+  function search() {
+    let searchAdminId = document.getElementById('searchid').value;
+    let searchFirstName = document.getElementById('searchFirstname').value;
+    let searchLastName = document.getElementById('searchLastname').value;
+    let searchDoB = document.getElementById('searchDob').value;
+
+    const url = []
+    let mainUrl = `http://localhost:3000/admin`
+
+    if (searchAdminId) {
+      url.push(`searchAdminId=${searchAdminId}`)
+
+    }
+    if (searchFirstName) {
+      url.push(`searchFirstName=${searchFirstName}`)
+
+    }
+    if (searchLastName) {
+      url.push(`searchLastName=${searchLastName}`)
+
+    }
+    if (searchDoB) {
+      url.push(`searchdob=${searchDoB}`) 
+    }
+
+    let urlStr = url.length ? `?${url.join('&')}` : ''
+    mainUrl += urlStr;
+    console.log(mainUrl)
+    window.location.replace(mainUrl)
+  }
+</script>
+
+</html>

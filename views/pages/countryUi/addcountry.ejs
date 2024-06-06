@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='../../public/images/' type="images">
+
+    <title>country-Portal</title>
+    <style>
+        .body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        .page {
+            /* background: url('../../public/images/image.png') no-repeat center fixed;
+            background-size: cover; */
+            /* background-image: url('../../public/images/image.png'); */
+            width: 500px;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+
+        }
+
+        .inputBox {
+
+            backdrop-filter: blur(8px);
+            width: 300px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            border-radius: 30px;
+            box-shadow: 50px;
+            box-shadow: 10px 10px 5px rgb(159, 158, 158);
+            transition: 0.5s;
+
+        }
+
+        .submit-button {
+            background-color: #ddd;
+            border: none;
+            color: black;
+            padding: 16px 28px;
+            text-align: center;
+            font-size: 12px;
+            transition: 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: green;
+            color: white;
+            border-radius: 20px;
+        }
+
+        .cancel-button {
+            background-color: #ddd;
+            border: none;
+            color: black;
+            padding: 16px 28px;
+            text-align: center;
+            font-size: 12px;
+            transition: 0.3s;
+        }
+
+        .cancel-button:hover {
+            background-color: orangered;
+            color: white;
+            border-radius: 20px;
+        }
+
+        .input-margin {
+            margin-left: 10px;
+        }
+
+        .input:hover {
+            border-radius: 10px;
+            border-color: rgb(172, 83, 83);
+        }
+    </style>
+</head>
+
+<body class="body">
+    <div class="font">
+        <h1>Add country</h1>
+    </div>
+    <div class="page">
+        <div class="inputBox ">
+            <div class="input1">
+                <label for="name" class="label-name">Country Name : </label>
+                <input id="name" name="name" class="input" value="<%=data.name %>" required>
+            </div>
+            <div class="input1">
+                <label for="code2" class="label-name">Country code-2 : </label>
+                <input id="code2" name="code2" class="input" value="<%=data.isoCode2 %>" minlength="2" maxlength="2"
+                    required>
+            </div>
+            <div class="input1">
+                <label for="code3" class="label-name">Country code-3 : </label>
+                <input id="code3" name="code3" class="input" value="<%=data.isoCode3 %>" minlength="3" maxlength="3"
+                    required>
+            </div>
+            <div class="input1">
+                <label for="phone-code" class="label-name">Phone Code : </label>
+                <input id="phoneCode" name="phoneCode" class="input input-margin" value="<%=data.phoneCode %>"
+                    minlength="5" maxlength="5">
+                <input type="hidden" id="id" name="id" value="<%=data.id %>">
+            </div>
+            <div class="buttons">
+                <button type="button" class="cancel-button" onclick="cancel()">cancel</button>
+                <button type="button" class="submit-button" onclick="addCountry()">submit</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function addCountry() {
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            var name = document.getElementById('name').value;
+            var iso2 = document.getElementById('code2').value;
+            var ios3 = document.getElementById('code3').value;
+            var phcode = document.getElementById('phoneCode').value;
+            var countryId = document.getElementById('id').value;
+            const raw = JSON.stringify({
+                "name": name,
+                "code2": iso2,
+                "code3": ios3,
+                "phcode": phcode
+            });
+            const requestOptions = {
+                headers: myHeaders,
+                body: raw,
+                redirect: "follow"
+            };
+
+            let request
+            if (countryId === '') {
+                request = fetch("http://localhost:3000/api/country", { ...requestOptions, method: "POST", })
+            } else {
+                request = fetch("http://localhost:3000/api/country/" + countryId, { ...requestOptions, method: "PUT", })
+            }
+
+            request.then(async (response) => {
+                if (response.status == 200) {
+                    window.location.replace("http://localhost:3000/country")
+                } else {
+                    alert(await response.text())
+                }
+            })
+                .catch((error) => console.error(error));
+        }
+        function cancel() {
+            window.location.replace('http://localhost:3000/country')
+        }
+    </script>
+</body>
+
+</html>

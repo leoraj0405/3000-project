@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarship Form</title>
+    <style>
+        .form {
+            width: 800px;
+        }
+
+        .corner {
+            display: flex;
+            justify-content: flex-end;
+            font-size: x-small;
+        }
+
+        .heading {
+            text-align: center;
+            font-size: 14px;
+            line-height: 24px;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .left {
+            width: 308px;
+            font-size: 15px;
+        }
+
+        .label-2 {
+            width: 800px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .label-name {
+            width: 348px;
+            text-align: left;
+            margin-top: 22px;
+            flex-direction: column;
+            display: flex;
+            gap: 5px;
+            line-height: 24px;
+        }
+
+        .eng-label {
+            line-height: 20px;
+        }
+
+        .photo {
+            width: 176px;
+            height: 240px;
+            border: 1px solid gray;
+            text-align: center;
+            line-height: 18px;
+            font-size: smaller;
+            padding-top: 74px;
+            box-sizing: border-box;
+        }
+
+        .border-bottom {
+            border-bottom: 1px solid #747575;
+        }
+
+        .table {
+            width: 800px;
+            margin-top: 26px;
+
+        }
+
+        .table-row {
+            flex-direction: row;
+            display: flex;
+            border-top: 1px solid gray;
+            border-left: 1px solid gray;
+            border-right: 1px solid gray;
+            box-sizing: border-box;
+        }
+
+        .table-row .sno {
+            text-align: center;
+            width: 50px;
+            min-height: 40px;
+            border-right: 1px solid gray;
+            box-sizing: border-box;
+            padding-top: 5px;
+        }
+
+        .section-1,
+        .section-2,
+        .section-3,
+        .section-4 {
+            font-size: 14px;
+            box-sizing: border-box;
+            padding: 5px;
+            display: flex;
+            align-items: flex-start;
+            text-align: justify;
+
+        }
+
+        .table-layout-3 .section-1 {
+            width: 376px;
+            text-align: left;
+        }
+
+        .table-layout-3 .section-2 {
+            width: 376px;
+            border-left: 1px solid gray;
+        }
+
+        .table-layout-2 .section-1 {
+            width: 749px;
+        }
+
+        .table-layout-4 .section-1 {
+            width: 374px;
+            text-align: left;
+            border-bottom: 1px solid gray;
+            align-items: start;
+        }
+
+        .table-layout-4 .section-2 {
+            width: 150px;
+            border-left: 1px solid gray;
+            border-bottom: 1px solid gray;
+        }
+
+        .table-layout-4 .section-3 {
+            width: 225px;
+            border-left: 1px solid gray;
+            border-bottom: 1px solid gray;
+        }
+
+        .table-layout-4-2 .section-1 {
+            width: 200px;
+            border-bottom: 1px solid gray;
+        }
+
+        .table-layout-4-2 .section-2 {
+            width: 200px;
+            border-left: 1px solid gray;
+        }
+
+        .table-layout-4-2 .section-3 {
+            width: 200px;
+            border-left: 1px solid gray;
+        }
+
+        .table-layout-4-2 .section-4 {
+            width: 200px;
+            border-left: 1px solid gray;
+        }
+
+        .table-layout-3-2 .section-1 {
+            width: 549px;
+        }
+
+        .table-layout-3-2 .section-2 {
+            width: 199px;
+            border-left: 1px solid gray;
+        }
+
+        .table-layout-3-3 .section-1 {
+            width: 500px;
+        }
+
+        .table-layout-3-3 .section-2 {
+            width: 200px;
+            border-left: 1px solid gray;
+        }
+
+        .section-child-column {
+            flex-direction: column;
+            display: flex;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        .section-child-column .row {
+            flex-direction: row;
+            display: flex;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .section-child-column .column {
+            flex-direction: column;
+            display: flex;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .table3070 .row .label {
+            width: 30%;
+        }
+
+        .table3070 .row .value {
+            width: 70%;
+        }
+
+        .table5050 .row .label {
+            width: 50%;
+        }
+
+        .table5050 .row .value {
+            width: 50%;
+        }
+
+        .label {
+            min-height: 38px;
+            min-height: 40px;
+            height: auto;
+            text-align: left;
+            border-right: 1px solid #747575;
+            padding-left: 5px;
+            box-sizing: border-box;
+        }
+
+        .value {
+            height: 38px;
+        }
+
+        .none {
+            border: none;
+        }
+
+        .line-height {
+            line-height: 22px;
+        }
+
+        .gen {
+            flex-direction: row;
+            display: flex;
+            align-items: center;
+        }
+
+        .gender {
+            flex-direction: column;
+            display: flex;
+            gap: 12px;
+            padding-right: 194px;
+            box-sizing: border-box;
+            padding-top: 5px;
+        }
+
+        .felx {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gender-input {
+            display: flex;
+            flex-direction: row;
+            gap: 14px;
+        }
+
+        .column-4 {
+            width: 100%;
+            font-size: 15px;
+            text-align: left;
+            border-bottom: solid 1px gray;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .label-1 {
+            font-size: 15px;
+            padding: 5px;
+            box-sizing: border-box;
+            border-bottom: 1px solid gray;
+        }
+
+        .sub-label {
+            font-size: 13px;
+        }
+
+        .no-padding {
+            display: flex;
+            flex-direction: column;
+            padding: 0px
+        }
+
+        .column-1 {
+            width: 100%;
+            font-size: 14px;
+            padding: 0px;
+            padding-left: 5px;
+            box-sizing: border-box;
+        }
+
+        .font-size {
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .text-align {
+            display: flex;
+            align-items: normal;
+            height: 190px;
+        }
+
+        .input {
+            display: flex;
+            flex-direction: row;
+            gap: 100px;
+        }
+
+        .input-1 {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 20px;
+        }
+
+        .one {
+            width: 40%;
+            height: 20px;
+        }
+
+        .two {
+            width: 60%;
+            height: 20px;
+        }
+
+        .column {
+            display: flex;
+        }
+
+        .main-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .center {
+            text-align: center;
+            padding-left: 20px;
+            box-sizing: border-box;
+        }
+
+        .center-2 {
+            padding-left: 32px;
+            box-sizing: border-box;
+        }
+
+        .no-border {
+            border-bottom: 0px;
+        }
+
+        .width {
+            width: 182px;
+        }
+
+        .border-left {
+            border-left: 1px solid gray;
+        }
+
+        .border-right {
+            border-right: 1px solid gray;
+        }
+
+        .row-label {
+            display: flex;
+            flex-direction: row;
+            gap: 140px;
+        }
+
+        .width-1 {
+            width: 150px;
+            text-align: center;
+            box-sizing: border-box;
+            padding: 12px;
+        }
+
+        .width-2 {
+            width: 225px;
+        }
+
+        .height {
+            height: 150px;
+        }
+
+        .heigh-2 {
+            height: 80px;
+        }
+
+        .main-label {
+            width: 738px;
+            border-bottom: 1px solid gray;
+            padding: 5px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form">
+        <div class="corner">ஆ.தி.ப.ந. 75</div>
+        <div class="heading">
+            <div>தமிழ்நாடு அரசு</div>
+            <div class="bold">GOVERNMENT OF TAMIL NADU</div>
+            <div>ஆதிதிராவிடர் மற்றும் பழங்குடியினர் நலத்துறை</div>
+            <div class="bold">ADI DRAVIDAR AND TRIBAL WELFARE DEPARTMENT</div>
+            <div>மத்திய / மாநில அரசு கல்வி உதவித் தொகை திட்டம் - பள்ளி இறுதி தேர்வுக்கு மேற்பட்ட
+                படிப்பிற்குரிய உதவித்தொகை பெறுவதற்கான விண்ணப்பம்.
+            </div>
+            <div class="bold">FORM TO APPLY FOR THE GRANT OF GOVERNMENT OF INDIA / STATE GOVERNMENT POST MATRIC
+                SCHOLARSHIPS FRESH FORM
+            </div>
+        </div>
+        <div class="head2">
+            <div class="label-2">
+                <div class="left">
+                    <div class="label-name">கல்வி நிறுவனத்தின் பெயர் </div>
+                    <div class="eng-label">Name of the institution</div>
+                    <div class="label-name">தற்போது கல்வி பயிலும் கல்வியாண்டு</div>
+                    <div class="eng-label">Academic Year</div>
+                    <div class="label-name">இணைய பயன்பாட்டில் மாணவருக்கு ஒதுக்கப்பட்ட அடையாள எண்:</div>
+                    <div class="eng-label">Scholarship Student Id Generated in Online:
+                        (To be filled by the institution)</div>
+                </div>
+                <div class="photo">
+                    மாணவரின் தற்போதைய புகைப்பட நகல் இணைக்கப்பட வேண்டும்.
+                </div>
+            </div>
+        </div>
+        <div class="table">
+            <div class="table-row table-layout-3">
+                <div class="sno">
+                    1
+                </div>
+                <div class="section-1 line-height">
+                    மாணவர் பெயர் (தெளிவான எழுத்துக்களில்)
+                    Full Name of the Student (in Block letters)
+                </div>
+
+                <div class="section-2  section-child-column table3070">
+                    <div class="row border-bottom">
+                        <div class="label">
+                            தமிழ்
+                        </div>
+                        <div class="value"></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">
+                            English
+                        </div>
+                        <div class="value"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-row table-layout-2">
+                <div class="sno">2</div>
+                <div class="section-1 felx">
+                    <div class="gender">
+                        <div class="gender-label">
+                            பாலினம் / Gender (டிக் செய்யவும்)</div>
+                        <div class="gender-input">
+                            <div>
+                                <span class="gen">1.ஆண் / Male
+                                    <input type="radio" class="box" checked></span>
+                            </div>
+                            <div>
+                                <span class="gen">2.பெண் / Female
+                                    <input type="radio" class="box" checked></span>
+                            </div>
+                            <div>
+                                <span class="gen">3.மூன்றாம் பாலினம் / Transgender
+                                    <input type="radio" class="box" checked></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-row table-layout-3">
+                <div class="sno">3</div>
+                <div class="section-1 line-height">
+                    பிறந்த தேதி / Date of Birth
+                </div>
+                <div class="section-2"></div>
+            </div>
+            <div class="table-row table-layout-2">
+                <div class="sno">4</div>
+                <div class="section-1 no-padding line-height">
+                    <div class="column-4">
+                        பெற்றோர் அல்லது பாதுகாவலர் விவரம் / Parent or Guardian Details: (பெற்றோர் இல்லை எனில்
+                        பாதுகாவலர்
+                        விவரம் குறிப்பிடப்பட வேண்டும்)
+                    </div>
+                    <div class="section-1 section-child-column table5050">
+                        <div class="row border-bottom">
+                            <div class="label">
+                                தாய் பெயர் / Name of the Mother
+                            </div>
+                            <div class="value">
+                            </div>
+                        </div>
+                        <div class="row border-bottom">
+                            <div class="label">
+                                தந்தை பெயர்/Name of the Father
+                            </div>
+                            <div class="value">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="label">
+                                பாதுகாவலர் பெயர் / Name of the Guardian
+                            </div>
+                            <div class="value">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-row table-layout-3">
+                <div class="sno">
+                    5
+                </div>
+                <div class="section-1 no-padding line-height">
+                    <div class="label-1">
+                        சாதி விவரம் / CommunityDetails:
+                        <div class="sub-label">
+                            <div>(a) பட்டியல் இனத்தவர்(SC)</div>
+                            <div>(b) பழங்குடியினர்(ST)</div>
+                            <div>(c) கிறித்துவ மதத்திற்கு மாறிய பட்டியல் இனத்தவர் Scheduled Caste Converted
+                                to Christianity (SCC)</div>
+                        </div>
+                    </div>
+                    <div class="column-1">
+                        சாதி உட்பிரிவு பெயர் / Sub Caste Name :
+                    </div>
+                </div>
+                <div class="section-2">
+                </div>
+            </div>
+            <div class="table-row table-layout-3 table5050">
+                <div class="sno">
+                    6
+                </div>
+                <div class="section-1 no-padding line-height">
+                    <div class="label-1 font-size">
+                        பெற்றோர் அல்லது பாதுகாவலர் தொழில்
+                        Parent or Guardian Occupation
+                    </div>
+
+                    <div class="label-1 font-size">
+                        மாணவரின் பெற்றோர் அல்லது பாதுகாவலர் மத்திய அரசு / மாநில அரசு / தனியார் நிறுவன ஊழியர் எனில்,
+                        பதவியின் பெயர், பணிபுரியும் நிறுவனத்தின் விவரம் . If the student's Parent Guardian is working in
+                        Govt of India State Govt / Private Sector, Designation and Office details
+                    </div>
+
+                    <div class="label-1 font-size">
+                        பணிபுரியும் மத்திய அரசு / மாநில அரசு / தனியார் நிறுவனத்திடமிருந்து பெறப்பட்ட வருமானச்
+                        சான்றிதழில் குறிப்பிட்டுள்ள வருமானத்தை எழுத வேண்டும். (ஊதியச்சான்று நகல் இணைக்கப்பட வேண்டும் )
+                        Income as per Salary Certificate obtained from the Govt of India / State Govt Private
+                        Organisation (Salary Certificate is to be enclosed)
+                    </div>
+
+                </div>
+                <div class="section-2"></div>
+            </div>
+            <div class="table-row table-layout-3">
+                <div class="sno">7</div>
+                <div class="section-1 no-padding">குடும்ப ஆண்டு வருமானம் / Family Annual Income (வட்டாட்சியர் வழங்கிய
+                    வருமானச் சான்றிதழில் குறிப்பிடப்பட்டுள்ள வருமானத்தை எழுத வேண்டும்.)
+                </div>
+                <div class="section-2"></div>
+            </div>
+            <div class="table-row label-1 line-height">
+                குறிப்பு / Note: திருமணமான பெண் விண்ணப்பதாரர் எனில், கணவரின் பெயரில் பெறப்பட்ட வருமானச் சான்றிதழ்
+                மட்டுமே இணைக்கப்பட வேண்டும். Married women applicants should enclose income certificate of their
+                husband.
+            </div>
+            <div class="table-row table-layout-3">
+                <div class="sno">
+                    8
+                </div>
+                <div class="section-1 text-align">
+                    நிரந்தர முகவரி அஞ்சல் குறியீட்டுடன் Permanent Address with Postal Pincode
+                </div>
+                <div class="section-2 text-align">தற்காலிக முகவரி அஞ்சல் குறியீட்டுடன் Temporary Address with Postal
+                    Pincode
+                </div>
+            </div>
+            <div class="table-row table-layout-3">
+                <div class="sno">9</div>
+                <div class="section-1 line-height">
+                    மாணவரின் ஆதார் எண்.<br>
+                    Student's Aadhaar Number
+                </div>
+                <div class="section-2"></div>
+            </div>
+            <div class="table-row table-layout-3">
+                <div class="sno">10</div>
+                <div class="section-1 line-height">
+                    மாணவர் அல்லது பெற்றோரின் தொலைபேசி<br>
+                    Student's or Parent's Phone Number
+                </div>
+                <div class="section-2"></div>
+            </div>
+            <div class="table-row table-layout-3">
+                <div class="sno">11</div>
+                <div class="section-1 line-height">
+                    மாணவரின் மின்னஞ்சல் முகவரி <br>Student's e-mail id
+                </div>
+                <div class="section-2"></div>
+            </div>
+            <div class="table-row table-layout-2">
+                <div class="sno">12</div>
+                <div class="section-1 felx">
+                    <div class="gender">
+                        <div class="gender-label">
+                            நடப்பாண்டில் மாணவர் கல்வி பயிலும் ஆண்டு / Class of Study in Current Year</div>
+                        <div class="input">
+                            <div class="input-1">
+                                <span class="gen">(a) I Year
+                                    <input type="radio" class="box"></span>
+                                <span class="gen">(d) IV Year
+                                    <input type="radio" class="box"></span>
+                            </div>
+                            <div class="input-1">
+                                <span class="gen">(b) II Year
+                                    <input type="radio" class="box"></span>
+                                <span class="gen">(e) V Year
+                                    <input type="radio" class="box"></span>
+                            </div>
+                            <div class="input-1">
+                                <span class="gen">(c) III Year
+                                    <input type="radio" class="box"></span>
+                                <span class="gen">(e) V Year
+                                    <input type="radio" class="box"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-row table-layout-4">
+                <div class="sno">13</div>
+                <div class="main-column">
+                    <div class="column line-height">
+                        <div class="section-1">மாணவர் பயிலும் பாடத்தின் பெயர் மற்றும் பிரிவின் Q / Course&Subject of
+                            Study
+                            of the applicant (Examble: Course Β.Α., Subject-Tamil)</div>
+                        <div class="section-2 center-2 line-height">
+                            Cousre Name
+                        </div>
+                        <div class="section-3 center line-height">
+                            Main Subject<br>
+                            முதன்மைப் பாடப்பிரிவு
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="section-1">1) மேல்நிலை வகுப்பு / Higher Secondary Class(+lor+2), Maths Biology,
+                            Commerce Computer, History, etc.</div>
+                        <div class="section-2 ">
+                        </div>
+                        <div class="section-3"></div>
+                    </div>
+                    <div class="column">
+                        <div class="section-1">2) இளநிலைப் பட்டப்படிப்பு / U.G. Degree Course. Eg. B.A., (tamii) B.Sc.,
+                            (Maths) etc...</div>
+                        <div class="section-2 ">
+                        </div>
+                        <div class="section-3">
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="section-1">3)முதுநிலைப் பட்ட மேற்படிப்பு / P.G./ Research Course
+                            Eg, M.A., (Tamil) M.Sc., (Maths), M.Phil., (Tamil/Maths) P.hD., etc...</div>
+                        <div class="section-2 ">
+                        </div>
+                        <div class="section-3">
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="section-1">4)தொழிற்படிப்பு / Professional Course
+                            Eg.Β.Ε.,Μ.Ε., B.L., M.L., M.B.B.S., B.D.S., B.Sc,. (Nursing), C.A., etc...</div>
+                        <div class="section-2 ">
+                        </div>
+                        <div class="section-3">
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="section-1">5)பட்டயப்படிப்பு / Diploma Course Eg. D.E.C.E., D.E. E.E.,etc</div>
+                        <div class="section-2 ">
+                        </div>
+                        <div class="section-3">
+                        </div>
+                    </div>
+                    <div class="column no-border">
+                        <div class="section-1 ">6)சான்றிதழ் படிப்பு / Certificate Course
+                            (படிப்பின் கால அளவு ஒரு வருடம் இருக்க வேண்டும்/Duration of Course should be atleast one
+                            year)</div>
+                        <div class="section-2  ">
+                        </div>
+                        <div class="section-3 ">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-row table-layout-4">
+                <div class="sno">14</div>
+                <div class="column line-height">
+                    <div class="section-1 felx">
+                        <div>கல்வி பயிலும் முறை / Category of Study</div>
+                        <div class="felx">
+                            <div>1) பகல் நேரம்/Day Time</div>
+                            <div> 2) மாலை நேரம் / Evening Time</div>
+                            <div> 3) பகுதி நேரம் / Part Time</div>
+                            <div> 4) தொலைதூரம் / Correspondence</div>
+                        </div>
+                    </div>
+                    <div class="section-2 center-2 line-height">
+                    </div>
+                    <div class="section-3 center line-height">
+                    </div>
+                </div>
+            </div>
+            <div class="table-row table-layout-4">
+                <div class="sno">15</div>
+                <div class="section-1 felx">
+                    மாணவர் பயிலும் படிப்பின் மொத்த கால அளவு Duration of the course pursued by the student
+                </div>
+                <div class="section-2 center-2 line-height">
+                </div>
+                <div class="section-3 center line-height">
+                </div>
+            </div>
+            <div class="table-row table-layout-3">
+                <div class="sno">16</div>
+                <div class="section-1">
+                    மாணவர் பத்தாம் வகுப்பு பொதுத் தேர்வில் தேர்ச்சி பெற்ற ஆண்டு / பதிவு எண் / Year and Register number
+                    of Passing 10th Public Examination.
+                </div>
+                <div class="section-2  section-child-column ">
+                    <div class="row border-bottom">
+                        <div class="label width-1">
+                            ஆண்டு<br>Year
+                        </div>
+                        <div class="value width-1">
+                            பதிவு எண்.<br>Registration No.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label width-1"></div>
+                        <div class="value"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-row table-layout-3">
+                <div class="sno">17</div>
+                <div class="section-1">
+                    மாணவர் பனிரெண்டாம் வகுப்பு பொதுத் தேர்வில் தேர்ச்சி பெற்ற ஆண்டு / பதிவு எண் Year and Register number
+                    of Passing 12th Public Examination.
+                </div>
+                <div class="section-2  section-child-column ">
+                    <div class="row border-bottom">
+                        <div class="label width-1">
+                            ஆண்டு<br>Year
+                        </div>
+                        <div class="value width-1">
+                            பதிவு எண்.<br>Registration No.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label width-1"></div>
+                        <div class="value"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-row table-layout-3">
+                <div class="sno">18</div>
+                <div class="section-1">
+                    மாணவர் பட்டயப்படிப்பில் தேர்ச்சி பெற்ற ஆண்டு / பதிவு எண். Year and Register number of Passing
+                    Diplamo Public Examination.
+                </div>
+                <div class="section-2  section-child-column ">
+                    <div class="row border-bottom">
+                        <div class="label width-1">
+                            ஆண்டு<br>Year
+                        </div>
+                        <div class="value width-1">
+                            பதிவு எண்.<br>Registration No.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label width-1"></div>
+                        <div class="value"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-row table-layout-2">
+                <div class="sno">19</div>
+                <div class="section-1 felx">
+                    <div class="gender">
+                        <div class="gender-label">
+                            மாணவர் பயிலும் முறை / Category of Study (டிக் √ செய்யவும்)
+                        </div>
+                        <div class="gender-input">
+                            <div>
+                                <span class="gen">A) விடுதியில் அல்லாமல் பெற்றோர் அல்லது பாதுகாவலர் உடன் தங்கி பயில்வர்
+                                    பயில்பவர் / Day Scholar
+                                    <input type="radio" class="box" checked></span>
+                            </div>
+                            <div>
+                                <span class="gen">B) விடுதியில் தங்கி பயில்வர் Hosteller
+                                    <input type="radio" class="box" checked></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-row table-layout-2">
+                <div class="sno">20</div>
+                <div class="section-1">
+                    பத்தாம் வகுப்புக்குப் பின்னர் பயின்ற படிப்புகளின் விவரம் / பெறப்பட்ட கல்வி உதவித்தொகை விவரம் /
+                    இடை நிறுத்தம் இருப்பேன் அதன் விபரம் :
+                    Details of postmatric Courses after X standard in which applicant studied Scholarship Details / If
+                    break of study details should be furnished.
+                </div>
+            </div>
+            <div class="table-row table-layout-4-2">
+                <div class="section-1">
+                    பயின்ற ஆண்டு மற்றும் படிப்பு விவரம் / Details of study undergone together with year of study
+                </div>
+                <div class="section-2">கல்வி நிறுவனத்தின் பெயர் / Name of the institution</div>
+                <div class="section-3">கல்வி உதவித்தொகை பெறப்பட்டதா / Whether obtained Scholarship (Yes/No)</div>
+                <div class="section-4">பெறப்பட்ட கல்வி உதவித்தொகை / Amount of Scholarship received</div>
+            </div>
+            <div class="table-row table-layout-4-2 height">
+                <div class="section-1"></div>
+                <div class="section-2"></div>
+                <div class="section-3"></div>
+                <div class="section-4"></div>
+            </div>
+            <div class="table-row table-layout-3-2">
+                <div class="sno">21</div>
+                <div class="felx">
+                    <div class="section-1 border-bottom">முந்தைய கல்வியாண்டுகளில் மாணாக்கர் பயின்ற வகுப்புகளில் இருவேறு
+                        கல்வி உதவித்தொகை திட்டங்களின்கீழ்
+                        விண்ணப்பித்து கல்வி உதவித்தொகை பெற்றவரா ? (ஆம் எனில் குறைவான பயன்தரும் கல்வி உதவித்தொகை
+                        திட்டத்தின் கீழ் பெற்ற
+                        கல்வி உதவித்தொகையினை அரசுக் கணக்கில் திரும்ப செலுத்தி, செலுத்துச் சீட்டின் நகலை இணைக்கப்பட
+                        வேண்டும்). Whether the
+                        applicant is in receipt of more than two scholarship including this one? If yes, he should
+                        return the scholarship to Govt., which is less
+                        beneficial to him as per his choice and chellan copy should be enclosed.
+                    </div>
+                    <div class="column-1 heigh-2">(ii) செலுத்துச்சீட்டின் எண் மற்றும் நாள் <br> Challen Number and Date
+                    </div>
+                </div>
+                <div class="section-2 "></div>
+            </div>
+            <div class="table-row table-layout-3-2">
+                <div class="sno">22</div>
+                <div class="section-1">
+                    நடப்பு கல்வியாண்டில் மாணாக்கர் போஸ்ட் மெட்ரிக்கல்வி உதவித்தொகை திட்டத்தை தவிர இதர கல்வி உதவித்தொகை
+                    திட்டங்களின் கீழ் பயன்பெற விண்ணப்பித்துள்ளரா? ஆம் எனில் அதன் விவரம். Whether the student has applied
+                    for any other
+                    scholarship scheme other than this scheme? If, yes provide the details of the scheme.
+                </div>
+                <div class="section-2"></div>
+            </div>
+            <div class="table-row table-layout-3-2">
+                <div class="sno">23</div>
+                <div class="section-1">
+                    தமிழ்நாட்டை சேர்ந்த மாணாக்கர் வெளிமாநில கல்வி நிறுவனங்களில் பயில்பவரா?
+                    (ஆம் எனில் உரிய அங்கீகாரம் வழங்கும் நிறுனத்தால் வழங்கப்பட்ட கல்வி நிறுவன
+                    அங்கீகாரச் சான்று / படிப்புப்பிரிவு இணைவிப்பு
+                    சான்று கட்டாயமாக இணைக்கப்பட வேண்டும். Whehter the student belongs to the domicile
+                    state of Tamilnadu and studying in other states? If yes, enclose Insitution's latest approval
+                    and affiliation orders issued by the appropriate authority
+                </div>
+                <div class="section-2"></div>
+            </div>
+            <div class="table-row table-layout-2">
+                <div class="sno border-bottom">24</div>
+                <div class="section-1 section-child-column table5050 border-bottom">
+                    <div class="main-label">
+                        மாணவரின் வங்கி கணக்கு விவரம் /
+                        Student Bank Account Details
+                    </div>
+                    <div class="row border-bottom">
+                        <div class="sno">1</div>
+                        <div class="label">
+                            வங்கியின் பெயர் / Name of the Bank
+                        </div>
+                        <div class="value"></div>
+                    </div>
+                    <div class="row border-bottom">
+                        <div class="sno">2</div>
+                        <div class="label">
+                            வங்கிக் கிளையின் பெயர் / Name of the Branch
+                        </div>
+                        <div class="value"></div>
+                    </div>
+                    <div class="row border-bottom">
+                        <div class="sno">3</div>
+                        <div class="label">
+                            வங்கி கணக்கு எண் Bank Account Number
+                        </div>
+                        <div class="value"></div>
+                    </div>
+                    <div class="row border-bottom">
+                        <div class="sno">4</div>
+                        <div class="label">
+                            MICR Code of the Bank / வங்கியின் காந்தமை எழுத்துரு குறியீடு
+                        </div>
+                        <div class="value"></div>
+                    </div>
+                    <div class="row border-bottom">
+                        <div class="sno">5</div>
+                        <div class="label">
+                            IFSC Code / வங்கிகளின் இந்திய நிதி அமைப்பு குறியீடு
+                        </div>
+                        <div class="value"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="center font-size">
+            மத்திய அரசு போஸ்ட் மெட்ரிக் கல்வி உதவித் தொகை பெறும் மாணவர்களுக்கு மட்டும் உடல் ஊனமுற்ற
+            இந்து ஆதிதிராவிடர் / பழங்குடியினர் மாணவர்களுக்காக கூடுதல் சலுகை Additional benefits for physically
+            disabled SC/ST students under Govt. of India Postmatric Scholarship beneficiaries alone.
+        </div>
+        <div class="table">
+            <div class="table-row font-size center">
+                விண்ணப்பதாரர் உடல் ஊனமுற்றவரா? ஆம் எனில், பின்வருவனற்றில் பொருத்தமானதை டிக் பூர்த்தி செய்க
+                /whether the applicant of physically disabled If yes, tick (v) the suitable.
+            </div>
+            <div class="table-row table-layout-3-3">
+                <div class="sno">1</div>
+                <div class="section-1">
+                    பார்வைக் குறைவு / Low Vision
+                </div>
+                <div class="section-2"></div>
+            </div>
+            <div class="table-row table-layout-3-3">
+                <div class="sno">2</div>
+                <div class="section-1">
+                    காது கேட்பதில் குறையுள்ளவர் / Deaf
+                </div>
+                <div class="section-2"></div>
+            </div>
+            <div class="table-row table-layout-3-3">
+                <div class="sno">3</div>
+                <div class="section-1">
+                    தொழு நோயில் இருந்து மீண்டவர்கள்/ Recovered from leprosy
+                </div>
+                <div class="section-2"></div>
+            </div>
+            <div class="table-row table-layout-3-3">
+                <div class="sno">4</div>
+                <div class="section-1">
+                    மனநோயால் பாதிப்படைந்தவர்கள் / Psychologically affected.
+                </div>
+                <div class="section-2"></div>
+            </div>
+            <div class="table-row table-layout-3-3">
+                <div class="sno">5</div>
+                <div class="section-1">
+                    கை. கால்கள் ஊனமுற்று வழித்துணையாளர்களின் உதவியுடன் கல்லூரிக்கு செல்பவர் /
+                    Orthopedically handicapped going to college with the help of an escort
+                </div>
+                <div class="section-2"></div>
+            </div>
+            <div class="table-row table-layout-3-3">
+                <div class="sno">6</div>
+                <div class="section-1">
+                    கை, கால்கள் ஊனமுற்று கல்லூரியுடன் இணைந்த விடுதியில் தங்கியிருப்பவர்கள் / Physically handidcapped
+                    students staying in hostels attached to the Institution
+                </div>
+                <div class="section-2"></div>
+            </div>
+            <div class="table-row table-layout-3-3">
+                <div class="sno">7</div>
+                <div class="section-1">
+                    மூளை வளர்ச்சி குன்றியவர்களுக்கான சிறப்பு பயிற்சி பெறுபவர்கள்/Special
+                    coaching for mentally retarded person.
+                </div>
+                <div class="section-2"></div>
+            </div>
+            <div class="table-row table-layout-2">
+                <div class="sno">8</div>
+                <div class="section-1">
+                    மேலே வரிசை எண் (5) ல் குறிப்பிட்டுள்ள வழித்துணையாளர்கள்
+                    உதவியுடன் கல்லூரிக்கு செல்பவர்களாக இருந்தால்
+                </div>
+            </div>
+            <div class="table-row font-size ">
+                வழித்துணையாளரின் பெயர் மற்றும் முகவரி / Escort Name and Address
+                <div class="height"></div>
+            </div>
+            <div class="table-row font-size">
+                மேற்காணும் பொருள்களில் பொருத்தமானவற்றுக்கு சான்றிதழ் வழங்கும்
+                தகுதியுடைய மருத்துவ அலுவலரிடமிருந்து சான்றிதழ் பெற்று இணைக்க வேண்டும்.
+                For the disabilities listed above, Certificate issued by the Competant medical authority
+                should be obtained and enclosed with the application.
+            </div>
+        </div>
+        <div class="table-row"></div>
+        <div class="center font-size">
+            கல்வி நிலையத் தலைவரால் நிறைவு செய்யப்பட வேண்டியது <br>TO BE FILLED BY THE HEAD OF THE INSTITUTION
+        </div>
+        <div class="table">
+            <div class="table-row table-layout-2">
+                <div class="sno">1</div>
+                <div class="section-1 felx">
+                    <div class="gender">
+                        <div class="gender-label">
+                            கல்வி நிறுவனத்தின் வகைப்பாடு /Classification of the Institution டிக் ( V ) செய்யவும்.</div>
+                        <div class="input">
+                            <div class="input-1">
+                                <span class="gen">a) Central Government
+                                    <input type="radio" class="box"></span>
+                                <span class="gen">c) Government aided
+                                    <input type="radio" class="box"></span>
+                            </div>
+                            <div class="input-1">
+                                <span class="gen">b) State Government
+                                    <input type="radio" class="box"></span>
+                                <span class="gen">d) Self finance/ Private
+                                    <input type="radio" class="box"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-row table-layout-2">
+                <div class="sno">2</div>
+                <div class="section-1">
+                    கல்வி நிலையத்தின் பெயர் மற்றும் முழுமையான முகவரி 
+                    (அஞ்சல் குறியீட்டுடன்) Name of the Institute and Address with Pincode
+                </div>
+                <div class="height">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

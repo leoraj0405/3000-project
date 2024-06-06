@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<%- include('../../partials/head'); %>
+		<style>
+			.delete {
+				background-color: red;
+				color: black;
+			}
+
+			.edit {
+				background-color: orange;
+				color: black;
+			}
+
+			.formDev {
+				width: 400px;
+				height: 400px;
+				background-color: rgb(230, 229, 227);
+				display: flex;
+				flex-direction: column;
+				gap: 15px;
+				text-align: center;
+				margin-left: 350px;
+				padding-top: 20px;
+			}
+		</style>
+</head>
+
+<body class="container">
+	<header>
+		<%- include('../../partials/header'); %>
+	</header>
+	<main>
+		<div class="jumbotron">
+		<dev>
+			<dev class="formDev">
+				<h3> users form </h3>
+				<dev class="fname">
+					<label>First Name : </label>
+					<input type="text" class="form-control" id="firstName" name="firstName" value="<%=data.firstName %>">
+				</dev>
+				<dev class="lname">
+					<label>Last Name : </label>
+					<input type="text" class="form-control" id="lastName" name="lastName" value="<%=data.lastName %>">
+				</dev>
+				<dev class="xamId">
+					<label>Exam Id : </label>
+					<input type="number" class="form-control" id="examid" name="examid" value="<%=data.examId %>">
+				</dev>
+				<dev class="submitButton">
+					<input type="hidden" id="userid" name="userid" value="<%=data.userId %>">
+				</dev>
+				<center>
+					<button type="button" class="btn btn-outline-warning" onclick="canceBtn()">Cancel</button>
+					<button class="btn btn-outline-success" onclick="addUser()">Save</button>
+				</center>
+			</dev>
+		</dev>
+		</div>
+	</main>
+
+	<footer>
+		<%- include('../../partials/footer'); %>
+	</footer>
+</body>
+<script>
+	const myHeaders = new Headers();
+		myHeaders.append("Content-Type", "application/json");
+	function addUser() {			
+		var fName = document.getElementById('firstName').value;
+		var lName = document.getElementById('lastName').value;
+		var xamid = document.getElementById('examid').value;
+		var userid = document.getElementById('userid').value;
+		const raw = JSON.stringify({
+			"firstName": fName,
+			"lastName": lName,
+			"examId": xamid
+		});
+
+
+		const requestOptions = {
+			headers: myHeaders,
+			body: raw,
+			redirect: "follow"
+		};
+
+		let request
+		if (userid === '') {
+			request = fetch("http://localhost:3000/api/user", { 
+				...requestOptions, 
+				method: "POST",
+			})
+		}
+		else {
+			request = fetch("http://localhost:3000/api/user/" + userid, {
+				...requestOptions,
+				method: "PUT"
+			})
+		}
+		request.then((response) => {
+			window.location.replace("http://localhost:3000/user");
+		}).catch((error) => console.error(error));
+	}
+	function canceBtn(){
+		window.location.replace("http://localhost:3000/user");
+	}
+</script>
+</html>

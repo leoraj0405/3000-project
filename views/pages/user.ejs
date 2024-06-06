@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+    <style type="text/css">
+      button.submitButton {
+        background-color: red;
+        color: white;
+      }
+
+      .entryBox {
+        background-color: bisque;
+        color: brown;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        width: 400px;
+        border: 50px black;
+        margin-bottom: 50px;
+
+      }
+
+      .table {
+        background-color: white;
+        color: brown;
+        font: bold;
+      }
+    </style>
+</head>
+
+<body class="container">
+
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+
+  <main>
+    <center>
+      <div class="jumbotron">
+<form>
+        <div class="entryBox">
+          <tr>
+            <td>
+              <label><b>First Name: </b></label>
+              <input type="text" id="firstName" name="firstName"><br><br>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label><b>Last Name: </b></label>
+              <input type="text" id="lastName" name="lastName"><br><br>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label><b>Exam ID: </b></label>
+              <input type="number" id="examId" name="examId"><br><br>
+            </td>
+          </tr>
+
+          <button onclick="saveWork()" style="background-color: aqua; color: black;">Submit</button>
+
+        </div>
+        </form>
+      </div>
+
+      <div class="table">
+        <table>
+          <thead>
+            <th>User Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Exam Id</th>
+            <th>Created At</th>
+          </thead>
+          <tbody id="result">
+          </tbody>
+        </table>
+      </div>
+    </center>
+    </div>
+  </main>
+
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+
+  <script type="text/javascript">
+
+    async function getUsers() {
+      const response = await fetch("http://localhost:3000/api/user");
+      const users = await response.json();
+      var result = '';
+      for (const user of users) {
+        //console.log(result)
+        result = result + `<tr>
+            <td>${user.userId}</td>
+            <td>${user.firstName}</td>
+            <td>${user.lastName}</td>
+            <td>${user.examId}</td>
+            <td>${null}</td>
+            <td><button onclick="editWork('${user.userId.toString()}')" style="background-color: orange;color: black;">Edit</button>
+            <td><button onclick="deleteWork('${user.userId.toString()}')" style="background-color: red;color: black;">delete</button></td>
+          </tr>`
+      }
+      document.getElementById('result').innerHTML = result;
+    }
+
+    getUsers();
+    function editWork(id) {
+      //window.location.href = "http://localhost:3000/user/" + id;
+    }
+    function saveWork() {
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      var fname = document.getElementById('firstName').value;
+      var lname = document.getElementById('lastName').value;
+      var examId = document.getElementById('examId').value;
+      if ('firstName' == ' ' && 'lastName' == ' ' && 'examId' == ' ') {
+        response.write("empty entry")
+      } else {
+        var raw = JSON.stringify({
+          "firstName": fname,
+          "lastName": lname,
+          "examId": examId
+        });
+
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
+        fetch("http://localhost:3000/api/user", requestOptions)
+          .then(response => response.text())
+          .then(getUsers)
+          .catch(error => console.log('error', error));
+      }
+
+    }
+
+    function deleteWork(delId) {
+      //lert(delId)
+      if (confirm('Are you sure you want to delete ?')) {
+        //var xamId = document.getElementById('examId').value;
+        //document.getElementById('examId').style.display = 'block';
+
+        const requestOptions = {
+          method: "DELETE",
+          redirect: "follow"
+        };
+        //fetch("http://localhost:3000/api/user/'delId'", requestOptions)
+        fetch("http://localhost:3000/api/user/" + delId, requestOptions)
+          .then((response) => response.text())
+          .then((getUsers))
+          .catch((error) => console.error(error));
+      }
+    }
+</script>
+
+</body>
+
+</html>
