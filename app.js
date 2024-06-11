@@ -3,6 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const bodyParser = require('body-parser');
+var session = require('express-session');
+var FileStore = require('session-file-store')(session);
+
+
 
 var userApiRouter = require('./routes/api/user');
 var adminApiRouter = require('./routes/api/admin');
@@ -26,7 +31,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+var fileStoreOptions = {};
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({
+   secret: 'keyboard cat',
+   resave: true,
+   saveUninitialized: true,
+   cookie : {
+    maxAge:(1000 * 60 * 100)
+  } 
+}));
 
 app.use('/api/user', userApiRouter);
 app.use('/api/admin', adminApiRouter);
@@ -38,8 +52,24 @@ app.use('/admin/', adminUiRouter);
 app.use('/country/',countryUiRouter);
 app.use('/state/',stateUiRouter);
 
+// const maxAge = (min) => 1000 * 60 * min
+// app.use(session({ secret: 'keyboard cat',
+//  cookie: { maxAge: maxAge(5) }}
+// ))
+// app.use(session({
+//   secret: 'secret-key',
+//   resave: false,
+//   saveUninitialized: false
+// }));
+
+
 app.get('/', (req, res) => {
-  res.render('pages/home');
+  if (req.session.views) {
+    req.session.views++
+  } else {
+    req.session.views = 1
+  }
+  res.render('pages/home',{refresh:req.session.views});
 });
 
 app.use(function (req, res, next) {

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Document</title>
+    <style>
+        .download {
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        Single file upload
+    </h1>
+
+    <form action="/uploadPic" method="post" enctype="multipart/form-data">
+        <span>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore iure voluptatum in!
+            Officia alias quisquam facilis? Ad cupiditate, natus quis maiores suscipit aperiam quibusdam
+            itaque atque animi rerum assumenda cumque modi odio soluta quidem, odit voluptatum? Eligendi
+            sunt, quos repellendus, debitis voluptate nemo neque quisquam porro veritatis accusantium aperiam
+            dignissimos esse dolorum mollitia aliquam iure officia tempore explicabo incidunt quas pariatur culpa
+            deserunt! Dignissimos quisquam quae alias iste pariatur facilis illo, nihil exercitationem totam eos quis
+            consequuntur, amet vel sint obcaecati ipsam. Eveniet, reiciendis laborum at cumque
+            tempore commodi corrupti culpa quasi in corporis qui ab molestiae ipsam quam repellat?
+        </span>
+        <input type="file" name="mypic" required><br>
+        <input type="submit" class="btn btn-primary" value="submit">
+    </form>
+    <div class="download">
+        <a href="/download" class="btn btn-info">Downloads</a>
+    </div>
+
+</body>
+
+</html>

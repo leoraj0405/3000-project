@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .body {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10%;
+        }
+
+        .form {
+            width: 1000px;
+            height: auto;
+            background-color: lightgray;
+        }
+
+        .table {
+            margin: 10px;
+            background-color: lightcyan;
+        }
+    </style>
+</head>
+
+<body class="body">
+    <div class="form">
+        <div class="table">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Serial No</th>
+                        <th scope="col">File</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i=0; i< result.length; i++) { %>
+                        <tr>
+                            <td scope="row">
+                                <%=result[i].id %>
+                            </td>
+                            <td>
+                                <% 
+                                    var fileName = result[i].filePath.split('-')
+                                %>
+                                <%=fileName[0] %>
+                            </td>
+                            <td>
+                                <a href="/download/<%=result[i].id %>">Download</a>
+                                <button class="btn btn-danger" onclick="del('<%=result[i].id %>')">Delete</button>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function del(id) {
+            if(confirm('Are you sure do you want to delete ?')){}
+            const requestOptions = {
+                method: "DELETE",
+                redirect: "follow"
+            };
+
+            fetch("http://localhost:5000/download/"+id, requestOptions)
+                .then( (response) => {
+                    if(response.status == 200){
+                       return window.location.reload()
+                    }
+                })
+        }
+    </script>
+</body>
+
+</html>
